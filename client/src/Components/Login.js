@@ -10,7 +10,6 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
-  const [progress, setProgress] = useState({ completedModules: 0, totalModules: 0 });
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -63,11 +62,7 @@ const Login = () => {
         localStorage.setItem('attemptCount', data.attemptCount || '0');
         localStorage.setItem('knowledgeLevel', data.knowledgeLevel || 'Beginner');
 
-        // Store progress data in state
-        setProgress({
-          completedModules: data.completedModules || 0,
-          totalModules: data.totalModules || 0,
-        });
+
 
         // Show success toast and navigate to home after 3 seconds
         toast.success('Login Successful! Redirecting to Home...', {
@@ -127,21 +122,7 @@ const Login = () => {
             </p>
           </form>
 
-          {/* Progress Tracking */}
-          {progress.totalModules > 0 && (
-            <div className="progress-container">
-              <h3>Progress</h3>
-              <p>
-                Completed Modules: {progress.completedModules}/{progress.totalModules}
-              </p>
-              <div className="progress-bar">
-                <div
-                  className="progress-bar-fill"
-                  style={{ width: `${(progress.completedModules / progress.totalModules) * 100}%` }}
-                />
-              </div>
-            </div>
-          )}
+
         </div>
       </div>
     </div>
